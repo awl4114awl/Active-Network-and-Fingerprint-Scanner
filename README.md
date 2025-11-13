@@ -14,13 +14,10 @@ This tool identifies active hosts on a subnet, retrieves their MAC addresses, an
 
 ## 📸 Screenshot
 
-*(Replace with your real screenshot)*
-
-```
-
-assets/app_screenshot.png
-
-```
+<p align="left">
+  <img src="screenshots/Screenshot 2025-11-13 141951.png" width="500">
+ <img src="screenshots/Screenshot 2025-11-13 141917.png" width="500">
+</p>
 
 ---
 
@@ -55,16 +52,20 @@ assets/app_screenshot.png
 Active-Network-and-Fingerprint-Scanner/
 │
 ├── src/
-│   ├── scanner.py          # ARP scan + Nmap fingerprint logic
-│   ├── gui.py              # Tkinter GUI
-│   └── **init**.py
+│   ├── __init__.py
+│   ├── scanner.py          # Network scanning + fingerprinting logic
+│   ├── gui.py              # All Tkinter UI logic
 │
-├── run.py                  # Application entry point
-├── requirements.txt        # Dependencies
-└── README.md
-
+├── screenshots/        # App screenshots for README)
+│
+├── tests/
+│   ├── test_scanner.py     # Unit tests (basic)
+│
+├── requirements.txt
+├── README.md
+├── LICENSE
+└── run.py                  # Launches the GUI
 ````
-
 ---
 
 ## 🚀 Installation & Setup
