@@ -1,67 +1,152 @@
-# Active Network and Fingerprint Scanner
+# 🛰️ Active Network & Fingerprint Scanner
 
-A simple network scanner with a graphical user interface (GUI) built using Python and Tkinter. This tool scans a specified IP range to discover devices on the network, displaying their IP addresses, MAC addresses, and operating systems.
+![Python](https://img.shields.io/badge/Python-3.14-blue?style=for-the-badge&logo=python&logoColor=white)
+![Scapy](https://img.shields.io/badge/Scapy-Networking-yellow?style=for-the-badge)
+![Nmap](https://img.shields.io/badge/Nmap-OS%20Fingerprinting-orange?style=for-the-badge&logo=nmap)
+![Tkinter](https://img.shields.io/badge/Tkinter-GUI-9cf?style=for-the-badge)
+![Windows](https://img.shields.io/badge/Platform-Windows-lightgrey?style=for-the-badge&logo=windows11)
+![Status](https://img.shields.io/badge/Project-Active-success?style=for-the-badge)
 
-## Features
-- **Network Discovery**: Scan a range of IP addresses to find active devices.
-- **OS Fingerprinting**: Identify the operating system of detected devices.
-- **Modern GUI**: Responsive and user-friendly interface with a sleek dark mode.
-- **Dynamic Scrollbar**: Only appears when the results exceed the visible area.
-- **Progress Bar**: Displays scan progress in real-time.
+A modern Python application that performs **ARP-based network discovery** and **OS fingerprinting** using Nmap.  
+This tool identifies active hosts on a subnet, retrieves their MAC addresses, and estimates operating systems using Nmap’s detection engine — all through a clean, dark-mode Tkinter GUI.
 
-## Requirements
-- **Python 3.x**
-- **Dependencies**:
-  - `scapy` for network scanning
-  - `python-nmap` for OS fingerprinting
-  - `tkinter` for GUI
+---
 
-### Installation on Fedora
-1. Install Python and necessary libraries:
-   ```bash
-   sudo dnf install python3 python3-tkinter
-   pip install scapy python-nmap
-   ```
+## 📸 Screenshot
 
-2. Install Nmap:
-   ```bash
-   sudo dnf install nmap
-   ```
+*(Replace with your real screenshot)*
 
-3. Clone the repository:
-   ```bash
-   git clone git@github.com:awl4114awl/Active-Network-and-Fingerprint-Scanner.git
-   cd Active-Network-and-Fingerprint-Scanner
-   ```
+```
 
-## Usage
-1. Run the application:
-   ```bash
-   python3 network_scanner.py
-   ```
+assets/app_screenshot.png
 
-2. Enter the IP range (e.g., `192.168.1.0/24`) and click the "Scan" button.
+```
 
-3. View the discovered devices in the table. The IP, MAC, and OS details will be displayed.
+---
 
-## Example Output
-- **Table View**:
-  ```
-  +----------------+-------------------+---------------------------+
-  | IP Address     | MAC Address       | Operating System          |
-  +----------------+-------------------+---------------------------+
-  | 192.168.1.1    | 88:DE:7C:C7:88:10 | Linux 3.11 - 4.1 (96%)    |
-  | 192.168.1.86   | 00:0C:43:8B:97:95 | Unknown                   |
-  +----------------+-------------------+---------------------------+
-  ```
+## ⚡ Features
 
-- **Progress Bar**:
-  A progress bar at the bottom of the interface indicates scanning progress.
+### ✔ ARP-Based Network Scanning
+- Discovers live hosts using Scapy ARP sweeps  
+- Displays IP + MAC for each responding device
 
-## Contributions
-Contributions are welcome! If you encounter any issues or have suggestions for improvement, feel free to submit an issue or pull request.
+### ✔ OS Fingerprinting (Nmap)
+- Uses: `nmap -O --osscan-guess --fuzzy`
+- Identifies OS families, versions, and accuracy %
 
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+### ✔ Clean Dark-Mode User Interface
+- Fixed 600×400 layout  
+- Balanced columns  
+- Scrollbar always visible  
+- Buttons disable during scan to prevent thread conflicts
 
+### ✔ User Experience Improvements
+- Background thread scanning (no frozen UI)
+- Progress bar + status footer
+- “Ready”, “Scanning…”, “X devices found”
+- CSV export option
 
+---
+
+## 🗂 Project Structure
+
+```
+
+Active-Network-and-Fingerprint-Scanner/
+│
+├── src/
+│   ├── scanner.py          # ARP scan + Nmap fingerprint logic
+│   ├── gui.py              # Tkinter GUI
+│   └── **init**.py
+│
+├── run.py                  # Application entry point
+├── requirements.txt        # Dependencies
+└── README.md
+
+````
+
+---
+
+## 🚀 Installation & Setup
+
+### 1. Install dependencies
+
+```bash
+pip install -r requirements.txt
+````
+
+### 2. Install Nmap (required)
+
+Download for Windows:
+[https://nmap.org/download.html#windows](https://nmap.org/download.html#windows)
+
+Enable: **Add Nmap to PATH**
+
+### 3. Install Npcap (required)
+
+Download:
+[https://npcap.com/](https://npcap.com/)
+
+Enable: **WinPcap compatibility mode**
+
+### 4. Run the app
+
+```bash
+python run.py
+```
+
+---
+
+## 🔧 Technical Overview
+
+### **Device Discovery (ARP Sweep)**
+
+Uses a broadcast ARP request:
+
+```python
+Ether(dst="ff:ff:ff:ff:ff:ff") / ARP(pdst=ip_range)
+```
+
+Hosts that respond are considered active.
+
+### **OS Fingerprinting**
+
+Runs:
+
+```
+nmap -O --osscan-guess --fuzzy <ip>
+```
+
+Parses:
+
+* OS matches
+* Accuracy values
+* Best match selection
+
+---
+
+## 📤 CSV Export
+
+Exports all discovered devices with:
+
+| IP Address | MAC Address | Operating System |
+| ---------- | ----------- | ---------------- |
+
+---
+
+## 🛡 Disclaimer
+
+Use this tool **only on networks you own or have explicit permission to scan**.
+Unauthorized scanning may violate laws or policies.
+
+---
+
+## ⭐ Future Enhancements
+
+* Multi-threaded OS scanning (faster scans)
+* Network interface selection
+* ICMP/TCP fallback for ARP-hidden devices
+* Build as standalone `.exe`
+* Integrated log window
+
+---
