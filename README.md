@@ -15,7 +15,7 @@ This tool identifies active hosts on a subnet, retrieves their MAC addresses, an
 ## 🖼 GUI Preview
 
 <p align="left">
-  <img src="screenshots/Screenshot 2025-11-18 145934.png" width="650">
+  <img src="screenshots/Screenshot 2025-11-18 145934.png" width="500">
 </p>
 
 ---
