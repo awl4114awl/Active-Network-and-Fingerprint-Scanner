@@ -63,10 +63,13 @@ This tool identifies active hosts on a subnet, retrieves their MAC addresses, an
 
 Active-Network-and-Fingerprint-Scanner/
 │
+├── idea./
+├── screenshots/
 ├── src/
 │   ├── scanner.py          # ARP scan + Nmap fingerprint logic
 │   ├── gui.py              # Tkinter GUI
 │   └── **init**.py
+├── tests/
 │
 ├── LICENSE
 ├── README.md                  # Application entry point
