@@ -10,6 +10,10 @@
 A modern Python application that performs **ARP-based network discovery** and **OS fingerprinting** using Nmap.  
 This tool identifies active hosts on a subnet, retrieves their MAC addresses, and estimates operating systems using Nmap’s detection engine — all through a clean, dark-mode Tkinter GUI.
 
+> ⚠️ **Ethical Use Notice:**  
+> Use this tool **only on networks you own or have explicit permission to scan**.
+> Unauthorized scanning may violate laws or policies.
+
 ---
 
 ## 🖼 GUI Preview
@@ -139,19 +143,8 @@ Exports all discovered devices with:
 
 ---
 
-## 🛡 Disclaimer
+## License
 
-Use this tool **only on networks you own or have explicit permission to scan**.
-Unauthorized scanning may violate laws or policies.
-
----
-
-## ⭐ Future Enhancements
-
-* Multi-threaded OS scanning (faster scans)
-* Network interface selection
-* ICMP/TCP fallback for ARP-hidden devices
-* Build as standalone `.exe`
-* Integrated log window
+This project is released under the **MIT License**. See [`LICENSE`](LICENSE) for details.
 
 ---
