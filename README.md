@@ -69,7 +69,8 @@ Active-Network-and-Fingerprint-Scanner/
 │   └── **init**.py
 │
 ├── run.py                  # Application entry point
-├── requirements.txt        # Dependencies
+├── requirements.txt
+├── LICENSE
 └── README.md
 
 ````
