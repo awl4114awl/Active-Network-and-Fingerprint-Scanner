@@ -8,7 +8,7 @@
 
 ---
 
-## 🧠 Overview
+## 🪟 Overview
 
 A modern Python application that performs **ARP-based network discovery** and **OS fingerprinting** using Nmap.  
 This tool identifies active hosts on a subnet, retrieves their MAC addresses, and estimates operating systems using Nmap’s detection engine — all through a clean, dark-mode Tkinter GUI.
