@@ -5,12 +5,16 @@
 ![Nmap](https://img.shields.io/badge/Nmap-OS%20Fingerprinting-orange?style=for-the-badge&logo=nmap)
 ![Tkinter](https://img.shields.io/badge/Tkinter-GUI-9cf?style=for-the-badge)
 ![Windows](https://img.shields.io/badge/Platform-Windows-lightgrey?style=for-the-badge&logo=windows11)
-![Status](https://img.shields.io/badge/Project-Active-success?style=for-the-badge)
+
+---
+
+## 🧠 Overview
 
 A modern Python application that performs **ARP-based network discovery** and **OS fingerprinting** using Nmap.  
 This tool identifies active hosts on a subnet, retrieves their MAC addresses, and estimates operating systems using Nmap’s detection engine — all through a clean, dark-mode Tkinter GUI.
 
-> ⚠️ **Ethical Use Notice**  
+> ⚠️ **Ethical Use Notice**
+> ---
 > Use this tool **only on networks you own or have explicit permission to scan**.
 > Unauthorized scanning may violate laws or policies.
 
