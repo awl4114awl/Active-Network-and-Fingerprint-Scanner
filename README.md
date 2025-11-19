@@ -68,10 +68,10 @@ Active-Network-and-Fingerprint-Scanner/
 │   ├── gui.py              # Tkinter GUI
 │   └── **init**.py
 │
-├── run.py                  # Application entry point
-├── requirements.txt
 ├── LICENSE
-└── README.md
+├── README.md                  # Application entry point
+├── requirements.txt
+└── run.py
 
 ````
 
