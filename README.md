@@ -10,13 +10,11 @@
 
 ## 🪟 Overview
 
-A modern Python application that performs **ARP-based network discovery** and **OS fingerprinting** using Nmap.  
-This tool identifies active hosts on a subnet, retrieves their MAC addresses, and estimates operating systems using Nmap’s detection engine — all through a clean, dark-mode Tkinter GUI.
+The **Active Network & Fingerprint Scanner** is a modern, dark-themed Windows desktop application built using **Python 3.14**, **Tkinter**, **Scapy**, and **Nmap**.
+It provides a clean and efficient interface for performing network discovery and lightweight reconnaissance on any subnet you specify. This tool is part of my **cybersecurity & Python development portfolio** — demonstrating practical networking knowledge, GUI design, multi-threaded scanning workflows, and OS detection techniques used in real-world security assessments.
 
-> ⚠️ **Ethical Use Notice**
-> ---
-> Use this tool **only on networks you own or have explicit permission to scan**.
-> Unauthorized scanning may violate laws or policies.
+> ⚠️ Use this tool **only on networks you own or have explicit permission to scan.**
+> Unauthorized scanning may violate laws, policies, or the Computer Fraud and Abuse Act (CFAA).
 
 ---
 
@@ -37,7 +35,7 @@ This tool identifies active hosts on a subnet, retrieves their MAC addresses, an
 
 ---
 
-## ⚡ Features
+## ☰ Features
 
 ### ✔ ARP-Based Network Scanning
 - Discovers live hosts using Scapy ARP sweeps  
@@ -101,70 +99,212 @@ Active-Network-and-Fingerprint-Scanner/
 
 ---
 
-## 🚀 Installation & Setup
+## ⬇️ Installation
 
-### 1. Install dependencies
+**1. Install dependencies**
 
 ```bash
 pip install -r requirements.txt
 ````
 
-### 2. Install Nmap (required)
+---
+
+**2. Install Nmap (required)**
 
 Download for Windows:
 [https://nmap.org/download.html#windows](https://nmap.org/download.html#windows)
 
-Enable: **Add Nmap to PATH**
+_Enable: **Add Nmap to PATH**_
 
-### 3. Install Npcap (required)
+---
+
+**3. Install Npcap (required)**
 
 Download:
 [https://npcap.com/](https://npcap.com/)
 
-Enable: **WinPcap compatibility mode**
+_Enable: **WinPcap compatibility mode**_
 
-### 4. Run the app
+---
+
+## ▶️ Running the Application
 
 ```bash
 python run.py
 ```
 
----
-
-## 🔧 Technical Overview
-
-### **Device Discovery (ARP Sweep)**
-
-Uses a broadcast ARP request:
-
-```python
-Ether(dst="ff:ff:ff:ff:ff:ff") / ARP(pdst=ip_range)
-```
-
-Hosts that respond are considered active.
-
-### **OS Fingerprinting**
-
-Runs:
-
-```
-nmap -O --osscan-guess --fuzzy <ip>
-```
-
-Parses:
-
-* OS matches
-* Accuracy values
-* Best match selection
+_The GUI should open._
 
 ---
 
-## 📤 CSV Export
+## ❓ How the Scanner Works
 
-Exports all discovered devices with:
+The application performs a full **Layer-2 → Layer-7 device discovery workflow** using a combination of **Scapy** and **Nmap**.
+Here’s the under-the-hood exact sequence:
 
-| IP Address | MAC Address | Operating System |
-| ---------- | ----------- | ---------------- |
+---
+
+**1. ARP Sweep (Network Discovery)**
+
+When you enter an IP range (e.g., `192.168.1.0/24`), the tool sends a broadcast:
+
+```
+ff:ff:ff:ff:ff:ff → ARP → Who has 192.168.1.X?
+```
+
+Every device that exists on that subnet responds with:
+
+* **Its IP address**
+* **Its MAC address**
+
+This identifies all *alive* devices **without sending any TCP/UDP traffic**, meaning it's:
+
+* Fast
+* Low-noise
+* Not blocked by firewalls
+
+---
+
+**2. Device Table Population**
+
+Each responding device is immediately inserted into the GUI with:
+
+* IP Address
+* MAC Address
+* Placeholder text: `Resolving OS…`
+
+This makes the UI feel responsive even before OS detection finishes.
+
+---
+
+**3. OS Fingerprinting via Nmap**
+
+For every discovered device, Nmap is invoked with:
+
+```
+-O --osscan-guess --fuzzy
+```
+
+Nmap analyzes:
+
+* TCP/IP stack behavior
+* Sequence prediction patterns
+* Window size
+* TTL characteristics
+* Specific port responses
+
+Then returns the best match:
+
+```
+"Linux 3.2 – 4.14 (100% accuracy)"
+"Windows 10 1607 – 21H2 (97% accuracy)"
+"Apple iOS 15 – 16 (100% accuracy)"
+"Fortinet Firewall (97% accuracy)"
+```
+
+This gives a **high-accuracy OS fingerprint**.
+
+---
+
+**4. Real-Time UI Updates**
+
+As each fingerprint resolves, the row in the GUI updates *in place*:
+
+* No freezing
+* No blocking the main thread
+* OS results appear one-by-one
+
+The progress bar runs until all devices are processed.
+
+---
+
+5. Optional CSV Export
+
+When the scan finishes, results can be exported:
+
+```
+IP Address, MAC Address, Operating System
+192.168.1.116, 4C:BC:E9:51:1F:F8, Linux 3.2 – 4.14 (100% accurate)
+...
+```
+
+Perfect for documentation, inventory, or a portfolio showcase.
+
+---
+
+### ✔ Summary Flow
+
+```
+[User Input] → [ARP Scan] → [Device List] → [Nmap Fingerprinting] → [UI Updates] → [Export]
+```
+
+---
+
+## 📤 Output Overview — What You Can Expect to See
+
+When you run the **Active Network & Fingerprint Scanner**, the application performs two major actions:
+
+### **1. ARP Sweep (Fast Device Discovery)**
+
+The scanner quickly identifies devices on your subnet using ARP broadcasting.
+
+You will immediately start seeing rows populate with:
+
+| IP Address    | MAC Address       | Operating System |
+| ------------- | ----------------- | ---------------- |
+| 192.168.1.113 | 90:8D:6E:56:15:10 | Resolving OS…    |
+| 192.168.1.116 | 4C:BC:E9:51:1F:F8 | Resolving OS…    |
+
+### **2. OS Fingerprinting (Slower / In-Depth)**
+
+For each discovered device, Nmap runs:
+
+```
+-O --osscan-guess --fuzzy
+```
+
+As results come in, the "Operating System" column updates in real-time:
+
+| IP Address    | MAC Address       | Operating System                           |
+| ------------- | ----------------- | ------------------------------------------ |
+| 192.168.1.113 | 90:8D:6E:56:15:10 | Unknown                                    |
+| 192.168.1.116 | 4C:BC:E9:51:1F:F8 | Linux 3.2 – 4.14 (100% accurate)           |
+| 192.168.1.123 | A0:85:FC:DD:98:6A | Fortinet FortiGate Firewall (97% accurate) |
+| 192.168.1.152 | F0:EF:86:16:CF:C9 | Google Home device (100% accurate)         |
+
+### **Status Footer**
+
+At the bottom you get clear status updates:
+
+```
+Ready.
+Scanning…
+9 devices found • Scan completed in 14.2s
+```
+
+### **CSV Export Output**
+
+Exporting results generates a clean CSV file:
+
+```
+IP Address,MAC Address,Operating System
+192.168.1.113,90:8D:6E:56:15:10,Unknown
+192.168.1.116,4C:BC:E9:51:1F:F8,Linux 3.2–4.14 (100% accurate)
+192.168.1.123,A0:85:FC:DD:98:6A,Fortinet FortiGate Firewall (97% accurate)
+```
+
+### **Expected Real-World Results**
+
+Depending on your network, the scanner will identify:
+
+* Windows 10 / 11 machines
+* macOS clients
+* iOS & Android devices
+* Routers & firewalls (e.g., FortiGate, UniFi, TP-Link)
+* Smart home devices (Google Home, IoT, cameras)
+* Linux servers or embedded OSes
+
+OS detection accuracy varies. Some devices confidently report at 100%, others remain `"Unknown"` due to manufacturer restrictions or closed network stacks.
 
 ---
 
