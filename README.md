@@ -37,25 +37,12 @@ It provides a clean and efficient interface for performing network discovery and
 
 ## ☰ Features
 
-### ✔ ARP-Based Network Scanning
-- Discovers live hosts using Scapy ARP sweeps  
-- Displays IP + MAC for each responding device
-
-### ✔ OS Fingerprinting (Nmap)
-- Uses: `nmap -O --osscan-guess --fuzzy`
-- Identifies OS families, versions, and accuracy %
-
-### ✔ Clean Dark-Mode User Interface
-- Fixed 600×400 layout  
-- Balanced columns  
-- Scrollbar always visible  
-- Buttons disable during scan to prevent thread conflicts
-
-### ✔ User Experience Improvements
-- Background thread scanning (no frozen UI)
-- Progress bar + status footer
-- “Ready”, “Scanning…”, “X devices found”
-- CSV export option
+* **Discovers live hosts using Scapy ARP sweeps**
+* **Displays IP + MAC for each responding device**
+* **Uses: `nmap -O --osscan-guess --fuzzy`**
+* **Identifies OS families, versions, and accuracy %**
+* **Buttons disable during scan to prevent thread conflicts**
+* **CSV export option**
 
 ---
 
