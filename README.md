@@ -219,14 +219,6 @@ Perfect for documentation, inventory, or a portfolio showcase.
 
 ---
 
-### ✔ Summary Flow
-
-```
-[User Input] → [ARP Scan] → [Device List] → [Nmap Fingerprinting] → [UI Updates] → [Export]
-```
-
----
-
 ## 📤 Output Overview — What You Can Expect to See
 
 When you run the **Active Network & Fingerprint Scanner**, the application performs two major actions:
@@ -295,7 +287,7 @@ OS detection accuracy varies. Some devices confidently report at 100%, others re
 
 ---
 
-## License
+## 🪪 License
 
 This project is released under the **MIT License**. See [`LICENSE`](LICENSE) for details.
 
