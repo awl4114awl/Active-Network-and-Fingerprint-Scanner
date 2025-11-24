@@ -1,4 +1,4 @@
-# 🛰️ Active Network & Fingerprint Scanner
+# ⌨️ Active Network & Fingerprint Scanner
 
 ![Python](https://img.shields.io/badge/Python-3.14-blue?style=for-the-badge&logo=python&logoColor=white)
 ![Scapy](https://img.shields.io/badge/Scapy-Networking-yellow?style=for-the-badge)
