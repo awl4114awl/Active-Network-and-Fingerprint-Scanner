@@ -1,10 +1,6 @@
 # ⌨️ Active Network & Fingerprint Scanner
 
 ![Python](https://img.shields.io/badge/Python-3.14-blue?style=for-the-badge&logo=python&logoColor=white)
-![Scapy](https://img.shields.io/badge/Scapy-Networking-yellow?style=for-the-badge)
-![Nmap](https://img.shields.io/badge/Nmap-OS%20Fingerprinting-orange?style=for-the-badge&logo=nmap)
-![Tkinter](https://img.shields.io/badge/Tkinter-GUI-9cf?style=for-the-badge)
-![Windows](https://img.shields.io/badge/Platform-Windows-lightgrey?style=for-the-badge&logo=windows11)
 
 ---
 
