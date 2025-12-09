@@ -17,7 +17,7 @@ It provides a clean and efficient interface for performing network discovery and
 ## 🖼 GUI Preview
 
 <p align="left">
-  <img src="screenshots/Screenshot 2025-11-18 145934.png" width="500">
+  <img src="screenshots/Screenshot 2025-11-18 145934.png" width="900">
 </p>
 
 ---
