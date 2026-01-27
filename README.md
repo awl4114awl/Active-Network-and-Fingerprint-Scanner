@@ -8,19 +8,6 @@ It provides a clean and efficient interface for performing network discovery and
 > ⚠️ Use this tool only on networks you own or have explicit permission to scan.
 > Unauthorized scanning may violate laws, policies, or the Computer Fraud and Abuse Act (CFAA).
 
-## GUI Preview
-
-<p align="left">
-  <img src="screenshots/Screenshot 2025-11-18 145934.png" width="650">
-</p>
-
-## App Icon
-
-<p align="left">
-  <img src="screenshots/icon.ico" width="50">
-  <img src="screenshots/icon.png" width="200">
-</p>
-
 ## Features
 
 * Discovers live hosts using Scapy ARP sweeps
