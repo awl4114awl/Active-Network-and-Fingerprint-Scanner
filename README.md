@@ -1,48 +1,36 @@
-# ⌨️ Active Network & Fingerprint Scanner
+# Active Network & Fingerprint Scanner
 
-![Python](https://img.shields.io/badge/Python-3.14-blue?style=for-the-badge&logo=python&logoColor=white)
+## ⓘ Overview
 
----
+The Active Network & Fingerprint Scanner is a modern, dark-themed Windows desktop application built using Python 3.14, Tkinter, Scapy, and Nmap.
+It provides a clean and efficient interface for performing network discovery and lightweight reconnaissance on any subnet you specify. This tool is part of my cybersecurity & Python development portfolio — demonstrating practical networking knowledge, GUI design, multi-threaded scanning workflows, and OS detection techniques used in real-world security assessments.
 
-## 🪟 Overview
-
-The **Active Network & Fingerprint Scanner** is a modern, dark-themed Windows desktop application built using **Python 3.14**, **Tkinter**, **Scapy**, and **Nmap**.
-It provides a clean and efficient interface for performing network discovery and lightweight reconnaissance on any subnet you specify. This tool is part of my **cybersecurity & Python development portfolio** — demonstrating practical networking knowledge, GUI design, multi-threaded scanning workflows, and OS detection techniques used in real-world security assessments.
-
-> ⚠️ Use this tool **only on networks you own or have explicit permission to scan.**
+> ⚠️ Use this tool only on networks you own or have explicit permission to scan.
 > Unauthorized scanning may violate laws, policies, or the Computer Fraud and Abuse Act (CFAA).
 
----
-
-## 🖼 GUI Preview
+## GUI Preview
 
 <p align="left">
-  <img src="screenshots/Screenshot 2025-11-18 145934.png" width="900">
+  <img src="screenshots/Screenshot 2025-11-18 145934.png" width="650">
 </p>
 
----
-
-## 🧩 App Icon
+## App Icon
 
 <p align="left">
   <img src="screenshots/icon.ico" width="50">
   <img src="screenshots/icon.png" width="200">
 </p>
 
----
+## Features
 
-## ☰ Features
+* Discovers live hosts using Scapy ARP sweeps
+* Displays IP + MAC for each responding device
+* Uses: `nmap -O --osscan-guess --fuzzy`
+* Identifies OS families, versions, and accuracy %
+* Buttons disable during scan to prevent thread conflicts
+* CSV export option
 
-* **Discovers live hosts using Scapy ARP sweeps**
-* **Displays IP + MAC for each responding device**
-* **Uses: `nmap -O --osscan-guess --fuzzy`**
-* **Identifies OS families, versions, and accuracy %**
-* **Buttons disable during scan to prevent thread conflicts**
-* **CSV export option**
-
----
-
-## 🗂 Project Structure
+## Project Structure
 
 ```
 
@@ -80,11 +68,9 @@ Active-Network-and-Fingerprint-Scanner/
 
 ````
 
----
+## Installation
 
-## ⬇️ Installation
-
-**1. Install dependencies**
+1. Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -92,25 +78,23 @@ pip install -r requirements.txt
 
 ---
 
-**2. Install Nmap (required)**
+2. Install Nmap (required)
 
 Download for Windows:
 [https://nmap.org/download.html#windows](https://nmap.org/download.html#windows)
 
-_Enable: **Add Nmap to PATH**_
+_Enable: Add Nmap to PATH_
 
 ---
 
-**3. Install Npcap (required)**
+3. Install Npcap (required)
 
 Download:
 [https://npcap.com/](https://npcap.com/)
 
-_Enable: **WinPcap compatibility mode**_
+_Enable: WinPcap compatibility mode_
 
----
-
-## ▶️ Running the Application
+## Running the Application
 
 ```bash
 python run.py
@@ -118,16 +102,14 @@ python run.py
 
 _The GUI should open._
 
----
+## How the Scanner Works
 
-## ❓ How the Scanner Works
-
-The application performs a full **Layer-2 → Layer-7 device discovery workflow** using a combination of **Scapy** and **Nmap**.
+The application performs a full Layer-2 → Layer-7 device discovery workflow using a combination of Scapy and Nmap.
 Here’s the under-the-hood exact sequence:
 
 ---
 
-**1. ARP Sweep (Network Discovery)**
+1. ARP Sweep (Network Discovery)
 
 When you enter an IP range (e.g., `192.168.1.0/24`), the tool sends a broadcast:
 
@@ -137,10 +119,10 @@ ff:ff:ff:ff:ff:ff → ARP → Who has 192.168.1.X?
 
 Every device that exists on that subnet responds with:
 
-* **Its IP address**
-* **Its MAC address**
+* Its IP address
+* Its MAC address
 
-This identifies all *alive* devices **without sending any TCP/UDP traffic**, meaning it's:
+This identifies all *alive* devices without sending any TCP/UDP traffic, meaning it's:
 
 * Fast
 * Low-noise
@@ -148,7 +130,7 @@ This identifies all *alive* devices **without sending any TCP/UDP traffic**, mea
 
 ---
 
-**2. Device Table Population**
+2. Device Table Population
 
 Each responding device is immediately inserted into the GUI with:
 
@@ -160,7 +142,7 @@ This makes the UI feel responsive even before OS detection finishes.
 
 ---
 
-**3. OS Fingerprinting via Nmap**
+3. OS Fingerprinting via Nmap
 
 For every discovered device, Nmap is invoked with:
 
@@ -185,11 +167,11 @@ Then returns the best match:
 "Fortinet Firewall (97% accuracy)"
 ```
 
-This gives a **high-accuracy OS fingerprint**.
+This gives a high-accuracy OS fingerprint.
 
 ---
 
-**4. Real-Time UI Updates**
+4. Real-Time UI Updates
 
 As each fingerprint resolves, the row in the GUI updates *in place*:
 
@@ -213,13 +195,11 @@ IP Address, MAC Address, Operating System
 
 Perfect for documentation, inventory, or a portfolio showcase.
 
----
+## Output Overview — What You Can Expect to See
 
-## 📤 Output Overview — What You Can Expect to See
+When you run the Active Network & Fingerprint Scanner, the application performs two major actions:
 
-When you run the **Active Network & Fingerprint Scanner**, the application performs two major actions:
-
-### **1. ARP Sweep (Fast Device Discovery)**
+### 1. ARP Sweep (Fast Device Discovery)
 
 The scanner quickly identifies devices on your subnet using ARP broadcasting.
 
@@ -230,7 +210,7 @@ You will immediately start seeing rows populate with:
 | 192.168.1.113 | 90:8D:6E:56:15:10 | Resolving OS…    |
 | 192.168.1.116 | 4C:BC:E9:51:1F:F8 | Resolving OS…    |
 
-### **2. OS Fingerprinting (Slower / In-Depth)**
+### 2. OS Fingerprinting (Slower / In-Depth)
 
 For each discovered device, Nmap runs:
 
@@ -247,7 +227,7 @@ As results come in, the "Operating System" column updates in real-time:
 | 192.168.1.123 | A0:85:FC:DD:98:6A | Fortinet FortiGate Firewall (97% accurate) |
 | 192.168.1.152 | F0:EF:86:16:CF:C9 | Google Home device (100% accurate)         |
 
-### **Status Footer**
+### Status Footer
 
 At the bottom you get clear status updates:
 
@@ -257,7 +237,7 @@ Scanning…
 9 devices found • Scan completed in 14.2s
 ```
 
-### **CSV Export Output**
+### CSV Export Output
 
 Exporting results generates a clean CSV file:
 
@@ -268,7 +248,7 @@ IP Address,MAC Address,Operating System
 192.168.1.123,A0:85:FC:DD:98:6A,Fortinet FortiGate Firewall (97% accurate)
 ```
 
-### **Expected Real-World Results**
+### Expected Real-World Results
 
 Depending on your network, the scanner will identify:
 
@@ -283,8 +263,6 @@ OS detection accuracy varies. Some devices confidently report at 100%, others re
 
 ---
 
-## 🪪 License
+##  License
 
-This project is released under the **MIT License**. See [`LICENSE`](LICENSE) for details.
-
----
+This project is released under the MIT License. See [`LICENSE`](LICENSE) for details.
