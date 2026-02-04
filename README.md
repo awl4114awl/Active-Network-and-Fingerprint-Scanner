@@ -1,9 +1,6 @@
 # Active Network & Fingerprint Scanner
 
-## ⓘ Overview
-
-The Active Network & Fingerprint Scanner is a modern, dark-themed Windows desktop application built using Python 3.14, Tkinter, Scapy, and Nmap.
-It provides a clean and efficient interface for performing network discovery and lightweight reconnaissance on any subnet you specify. This tool is part of my cybersecurity & Python development portfolio — demonstrating practical networking knowledge, GUI design, multi-threaded scanning workflows, and OS detection techniques used in real-world security assessments.
+The Active Network & Fingerprint Scanner is a modern, dark-themed Windows desktop application built using Python 3.14, Tkinter, Scapy, and Nmap. This tool is part of my cybersecurity & Python development portfolio.
 
 > ⚠️ Use this tool only on networks you own or have explicit permission to scan.
 > Unauthorized scanning may violate laws, policies, or the Computer Fraud and Abuse Act (CFAA).
